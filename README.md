@@ -1,6 +1,6 @@
-# TensorFlow Lite Python object detection example with Raspberry Pi
+#This Python object detection model with Raspberry Pi
 
-This example uses [TensorFlow Lite](https://tensorflow.org/lite) with Python on
+This model uses [TensorFlow Lite](https://tensorflow.org/lite) with Python on
 a Raspberry Pi to perform real-time object detection using images streamed from
 the Pi Camera. It draws a bounding box around each detected object in the camera
 preview (when the object score is above a given threshold).
