@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* Adjust the style as needed */
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+        iframe {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome</h1>
+        <div id="map"></div>
+        <p><strong>Location:</strong> {{ latitude }}, {{ longitude }}</p>
+
+    </div>
+
+    <!-- Include Leaflet.js library -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Define the initial map setup
+        var map = L.map('map').setView([{{ latitude }}, {{ longitude }}], 12); // Example coordinates for New York City
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Add a marker to the map at the defined location
+        L.marker([{{ latitude }}, {{ longitude }}]).addTo(map)
+            .bindPopup('Location')
+            .openPopup();
+    </script>
+</body>
+</html>

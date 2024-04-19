@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blindspot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            border: 2px solid #000000;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .card {
+            width: 400px;
+            padding: 20px;
+            border: 1px solid #000000;
+            border-radius: 10px;
+            background-color: #f8f8f8;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .big-card {
+            height: 300px;
+        }
+        .small-card {
+            height: 100px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card big-card">
+            <!-- Live Location -->
+            <h2>Live Location</h2>
+               <iframe
+   width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+  src="https://maps.google.com/maps?q={{ latitude }},{{ longitude }}&hl=en&z=14&amp;output=embed"
+ >
+ </iframe>
+        </div>
+        <div class="card small-card">
+            <!-- Detected Person Name -->
+            <h2>Detected Person</h2>
+            <p>No person detected</p>
+        </div>
+        <div class="card small-card">
+            <!-- Object in Front -->
+            <h2>Object in Front</h2>
+            <p>No object detected</p>
+        </div>
+    </div>
+
+    <!-- Include Leaflet.js library -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+{#    <script>#}
+{#        // Define the initial map setup#}
+{#        var map = L.map('map').setView([{{ latitude }}, {{ longitude }}], 12);#}
+{##}
+{#        // Add OpenStreetMap tile layer#}
+{#        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {#}
+{#            maxZoom: 19,#}
+{#        }).addTo(map);#}
+{##}
+{#        // Add a marker to the map at the defined location#}
+{#        L.marker([{{ latitude }}, {{ longitude }}]).addTo(map)#}
+{#            .bindPopup('Location')#}
+{#            .openPopup();#}
+{#    </script>#}
+</body>
+</html>
