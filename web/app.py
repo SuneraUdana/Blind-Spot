@@ -14,10 +14,18 @@ def get_location():
 
     return lat, lon
 
+def get_object():
+    with open("object.txt", "r") as file:
+        # timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        fl = file.readlines()[0]
+
+    return fl
+
 @app.route('/')
 def hello_world():
     latitude, longitude = get_location()
-    return render_template('index.html', latitude=latitude, longitude=longitude)
+    object = get_object()
+    return render_template('index.html', latitude=latitude, longitude=longitude, object=object)
 
 
 
@@ -31,6 +39,17 @@ def receive_location_data():
         with open("location_data.txt", "w") as file:
             file.write(f"{latitude},{longitude}\n")
         return "Location data received and saved successfully", 200
+    else:
+        return "Invalid data received", 400
+
+@app.route('/receive_object', methods=['POST'])
+def receive_object():
+    data = request.json
+    object = data.get('object')
+    if object is not None and object is not None:
+        with open("object.txt", "w") as file:
+            file.write(f"{object}\n")
+        return "Object data received and saved successfully", 200
     else:
         return "Invalid data received", 400
 
